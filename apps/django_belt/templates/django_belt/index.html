@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'django_belt/css/style.css' %}">
+	<script src="{% static 'django_belt/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="registration">
+			<h1>Register a new account</h1>
+			<error>
+				{% if messages %} {% for message in messages %} {{message}} {%endfor%} {% endif %}
+			</error>
+			<form method="POST" action="register">
+				<label>First Name: </label><input type="text" name="first_name" value="{{first_name}}"></p>
+				<label>Last Name: </label><input type="text" name="last_name" value="{{last_name}}"></p>
+				<label>Email: </label><input type="text" name="email" value="{{email}}"></p>
+				<label>Password: </label><input type="password" name="password" value=""></p>
+				<label>Confirm Password: </label><input type="password" name="passwordconfirm" value=""></p>
+				{% csrf_token %}
+				<label><input type="submit" value="REGISTER"></label>
+			</form>
+			AsdfAsdf1
+		</div>
+
+		<div id="registration">
+			<h1>Login!</h1>
+			<form method="POST" action="login">
+				<label>Email: </label><input type="text" name="email" value="{{loginemail}}"></p>
+				<label>Password: </label><input type="password" name="password" value=""></p>
+				{% csrf_token %}
+				<label><input type="submit" value="LOGIN" id="submitbutton"></label>
+				</form>
+		</div>
+	</div>
+</body>
+
+<style>
+	#registration {
+		width: 100%;
+		/* border: 2px solid black; */
+		margin: auto;
+	}
+
+	#login {
+		width: 100%;
+		/* border: 2px solid black; */
+	}
+
+	error {
+		width: 100%;
+		/* border: 2px solid black; */
+		color: red;
+		margin: auto;
+		line-height: 30px;
+	}
+	#submitbutton {
+		/* border: 2px solid red; */
+		vertical-align: top;
+		text-align: left;
+		margin: auto;
+
+	}
+</style>
+
+</html>

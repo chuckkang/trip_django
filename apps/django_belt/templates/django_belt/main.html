@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'django_belt/css/style.css' %}">
+	<script src="{% static 'django_belt/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+	<body>
+		<div id="wrapper">
+			<div id="banner">
+				<a href="addtrip">Add Trip</a>------<a href="logout">LOGOUT</a>		
+			</div>
+				<h1>Trip Schedules </h1>
+			<error>
+			{% for message in messages %} {{message}} {%endfor%}
+			</error>
+			<br>
+			 Your scheduled trips<br>
+			{% for user in alluser  %}
+			<div id="alltrips">
+				
+			{% for trip in alltrips %}
+				{% if user.trip_id == trip.id %}
+					<strong>Destination: </strong> <a href="tripdetails/{{trip.id}}">{{trip.destination}}</a><br>
+					<strong>Description: </strong> {{trip.description}}<br>
+					<strong>Start Date: </strong> {{trip.start_date}}<br>
+					<strong>End Date: </strong> {{trip.end_date}}<br>
+				{% endif %}
+			 {%endfor%}
+			</div>
+			{%endfor%}
+
+					<!-- need to display all the results of the trips -->
+			<h2>Other user travel plans</h2>
+			{% for trip in othertrips %}
+			<div id="alltrips">
+				<strong>Planned By: </strong> 
+				{% for i in allusers %}
+				 {% if trip.planner_id == i.id %}
+					 {{i.first_name}} {{i.last_name}}
+				{%endif%}
+				{%endfor%}
+				<br>
+				<strong>Description: </strong> {{trip.description}}<br>
+				<strong>Start Date: </strong> {{trip.start_date}}<br>
+				<strong>End Date: </strong> {{trip.end_date}}<br> 
+				<strong><a href="join/{{trip.id}}">Join the event</a></strong>
+			</div>
+		{%endfor%}
+			
+
+		</div>
+	
+	</body>
+	<style>
+		#banner {
+			width: 100%;
+			/* border: 2px solid red; */
+			vertical-align: top;
+			text-align: right;
+			margin: auto;
+		}
+		error {
+			color:red;
+		}
+		 #alltrips {
+			 border: 2px solid black;
+			 width: 80%;
+			 text-align: left;
+			 margin: auto;
+
+		 }
+	</style>
+</html>

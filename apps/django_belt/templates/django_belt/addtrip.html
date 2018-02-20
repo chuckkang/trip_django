@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'django_belt/css/style.css' %}">
+	<script src="{% static 'django_belt/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="banner">
+			<a href="/main">Home</a>----<a href="logout">LOGOUT</a>
+		</div>
+		 <h1>Add A Trip</h1>
+		<error>
+			 {% for message in messages %} {{message}} {%endfor%}
+		</error>
+		<br>
+		<div id="tripform">
+		<form method="POST" action="submittrip">
+			<label>Destination: </label><input type="text" name="destination" value="">				
+			<label>Description: </label><input type="text" name="description" value="">
+			<label>Travel Date From:</label><input type="date" name="start_date">
+			<label>Travel Date End:</label><input type="date" name="end_date">
+			{%csrf_token%}
+			<input type="submit" value="ADD TRIP">
+		</form>
+		</div>
+	</div>
+
+</body>
+<style>
+	#banner {
+		width: 100%;
+		/* border: 2px solid red; */
+		vertical-align: top;
+		text-align: right;
+	}
+	error{
+		color: red;
+	}
+</style>
+
+</html>

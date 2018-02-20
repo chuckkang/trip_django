@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'django_belt/css/style.css' %}">
+	<script src="{% static 'django_belt/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="banner">
+			<a href="addtrip">Add Trip</a>-----<a href="/main">Home</a>----<a href="logout">LOGOUT</a>
+		</div>
+							<h2>This trip details:</h2>
+			<div id="tripdetails">
+				<p>id: <strong>{{id}}</strong></p>
+				<p>Destination: <strong>{{destination}}</strong></p>
+				<p>description:<strong>{{description}}</strong></p>
+				<p>Start_date:<strong>{{start_date}}</strong></p>
+				<p>End date:<strong>{{end_date}}</strong></p>
+
+			</div>
+			<div id="tripdetails">
+				<h2>Users Attending this event</h2>
+			{% for user in allusers %}
+			{% for join in usersjoining %}
+			{% if user.id == join.user_id %}
+				{{user.first_name}} {{user.last_name}}<br>
+			{% endif %}
+			{%endfor%}
+			{%endfor%}
+			</div>
+	</div>
+
+</body>
+<style>
+	#banner {
+		width: 100%;
+		/* border: 2px solid red; */
+		vertical-align: top;
+		text-align: right;
+	}
+
+	#tripdetails {
+		border: 2px solid black;
+		text-align: left;
+		width: 50%;
+		margin: auto;
+	}
+</style>
+
+</html>
